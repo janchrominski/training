@@ -33,3 +33,13 @@ def test_ll_append(basic_ll) -> None:
 
     assert list_of_vals == [x for x in range(5)]
 
+def test_ll_prepend(basic_ll) -> None:
+    """
+    test the prepend method
+    """
+    ll = basic_ll
+    ll.prepend(-1)
+
+    list_of_vals = __iterate_through_ll(basic_ll)
+
+    assert list_of_vals == [x for x in range(-1,5)]
