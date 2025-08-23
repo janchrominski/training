@@ -67,3 +67,39 @@ def test_ll_pop_right(basic_ll) -> None:
 
     assert list_of_vals == [x for x in range(0, 4)]
     assert four == 4
+
+def test_remove_1(basic_ll) -> None:
+    """
+    test remove first node
+    """
+    ll = basic_ll
+    zero = ll.remove(0)
+
+    list_of_vals = __iterate_through_ll(basic_ll)
+
+    assert list_of_vals == [x for x in range(1, 5)]
+    assert zero == 0
+
+def test_remove_2(basic_ll) -> None:
+    """
+    test remove middle node
+    """
+    ll = basic_ll
+    three = ll.remove(3)
+
+    list_of_vals = __iterate_through_ll(basic_ll)
+
+    assert list_of_vals == [x for x in range(0, 5) if x is not 3]
+    assert three == 3
+
+def test_remove_3(basic_ll) -> None:
+    """
+    test remove end node
+    """
+    ll = basic_ll
+    four = ll.remove(4)
+
+    list_of_vals = __iterate_through_ll(basic_ll)
+
+    assert list_of_vals == [x for x in range(0, 4)]
+    assert four == 4
