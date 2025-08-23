@@ -107,21 +107,25 @@ class LinkedList:
         # check for 1 length
         elif removee == self.head.value:
             old_value = self.head.value
-            self.head = self.tail
-        # check for 2 <= length
-        current_node = self.head
-        next_node = self.head.next
-        ## check if next node is the removee
-        while next_node.value != removee:
-            current_node = current_node.next
-            next_node = current_node.next
-        ## preserve the old value to be returned
-        old_value = next_node.value
-        ## destroy next node but preserve node after that
-        if next_node.next is not None:
-            current_node.next = next_node.next
+            if self.length == 1:
+                self.head = self.tail
+            else:
+                self.head = self.head.next
         else:
-            current_node.next = None
+            # check for 2 <= length
+            current_node = self.head
+            next_node = self.head.next
+            ## check if next node is the removee
+            while next_node.value != removee:
+                current_node = current_node.next
+                next_node = current_node.next
+            ## preserve the old value to be returned
+            old_value = next_node.value
+            ## destroy next node but preserve node after that
+            if next_node.next is not None:
+                current_node.next = next_node.next
+            else:
+                current_node.next = None
 
         self.length -= 1
         return old_value
