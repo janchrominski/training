@@ -55,3 +55,15 @@ def test_ll_pop_left(basic_ll) -> None:
 
     assert list_of_vals == [x for x in range(1,5)]
     assert zero == 0
+
+def test_ll_pop_right(basic_ll) -> None:
+    """
+    test the pop_right method
+    """
+    ll = basic_ll
+    four = ll.pop_right()
+
+    list_of_vals = __iterate_through_ll(basic_ll)
+
+    assert list_of_vals == [x for x in range(0, 4)]
+    assert four == 4
