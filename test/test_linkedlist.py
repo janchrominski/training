@@ -43,3 +43,15 @@ def test_ll_prepend(basic_ll) -> None:
     list_of_vals = __iterate_through_ll(basic_ll)
 
     assert list_of_vals == [x for x in range(-1,5)]
+
+def test_ll_pop_left(basic_ll) -> None:
+    """
+    test the pop_left method
+    """
+    ll = basic_ll
+    zero = ll.pop_left()
+
+    list_of_vals = __iterate_through_ll(basic_ll)
+
+    assert list_of_vals == [x for x in range(1,5)]
+    assert zero == 0
