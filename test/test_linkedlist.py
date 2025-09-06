@@ -103,3 +103,16 @@ def test_remove_3(basic_ll) -> None:
 
     assert list_of_vals == [x for x in range(0, 4)]
     assert four == 4
+
+def test_reverse(basic_ll) -> None:
+    """
+    test reverse
+    """
+    ll = basic_ll
+    ll.reverse()
+
+    list_of_vals = __iterate_through_ll(ll)
+
+    assert list_of_vals == [x for x in range(4, -1, -1)]
+
+    print('wow')

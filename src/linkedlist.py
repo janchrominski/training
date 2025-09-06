@@ -129,3 +129,27 @@ class LinkedList:
 
         self.length -= 1
         return old_value
+
+    def reverse(self) -> None:
+        """
+        Time complexity: O(n)
+        Space complexity: O(1)
+        """
+        prev = None
+        cur = self.head
+        next = self.head.next
+
+        while cur is not None:
+            # perform the changes
+            cur.next = prev
+
+            # move to the next
+            prev = cur
+            cur = next
+            if next is not None:
+                next = next.next
+
+        # swap head and tail
+        tmp = self.head
+        self.head = self.tail
+        self.tail = tmp
