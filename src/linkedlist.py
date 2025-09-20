@@ -135,21 +135,16 @@ class LinkedList:
         Time complexity: O(n)
         Space complexity: O(1)
         """
-        prev = None
-        cur = self.head
-        next = self.head.next
+        if self.length < 2:
+            return self
 
-        while cur is not None:
-            # perform the changes
-            cur.next = prev
-
-            # move to the next
-            prev = cur
-            cur = next
-            if next is not None:
-                next = next.next
+        left_node = None
+        middle_node = self.head
+        while middle_node is not None:
+            right_node = middle_node.next
+            middle_node.next = left_node
+            left_node = middle_node
+            middle_node = right_node
 
         # swap head and tail
-        tmp = self.head
-        self.head = self.tail
-        self.tail = tmp
+        self.head, self.tail = self.tail, self.head
