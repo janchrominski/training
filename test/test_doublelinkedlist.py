@@ -10,12 +10,12 @@ def test_append_pos_1():
 
     # Assert going forward
     n = dll.head
-    for i in range(5,0):
+    for i in range(0,5):
         assert n.value == i
         n = n.next
 
     # Assert going backward
     n = dll.tail
-    for i in range(0,5):
+    for i in range(5,0):
         assert n.value == i
         n = n.previous
