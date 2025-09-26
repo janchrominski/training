@@ -19,3 +19,17 @@ def test_append_pos_1():
     for i in range(5,0):
         assert n.value == i
         n = n.previous
+
+def test_prepend_pos_1():
+    # Arrange
+    dll = DoubleLinkedList()
+
+    # Act
+    for i in range(0,5):
+        dll.prepend(i)
+
+    # Assert
+    n = dll.head
+    for i in range(5,0):
+        assert n.value == i
+        n = n.next

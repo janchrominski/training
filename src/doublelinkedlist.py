@@ -21,12 +21,27 @@ class DoubleLinkedList:
         Time complexity: O(1)
         Space complexity: O(1)
         """
-        new_node = Node(value=new_val, next=self.head)
+        new_node = Node(value=new_val)
         if self._length == 0:
             self.head = self.tail = new_node
         else:
             self.tail.next = new_node
             new_node.previous = self.tail
             self.tail = new_node
+
+        self._length += 1
+
+    def prepend(self, new_val: int) -> None:
+        """
+        Time complexity:
+        Space Complexity:
+        """
+        new_node = Node(value=new_val)
+        if self._length == 0:
+            self.head = self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head.previous = new_node
+            self.head = new_node
 
         self._length += 1
