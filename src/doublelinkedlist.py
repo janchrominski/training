@@ -64,3 +64,22 @@ class DoubleLinkedList:
 
         self._length -= 1
         return rtr_value
+
+    def pop_right(self) -> int:
+        """
+        Time complexity: O(1)
+        Space Complexity: O(1)
+        """
+        rtr_val = self.tail.value
+
+        if self._length == 0:
+            raise TypeError
+        elif self._length == 1:
+            self.head = self.tail = None
+        else:
+            new_tail = self.tail.previous
+            new_tail.next = self.tail.previous = None
+            self.tail = new_tail
+
+        self._length -= 1
+        return rtr_val

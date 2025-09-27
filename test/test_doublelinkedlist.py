@@ -45,3 +45,15 @@ def test_pop_left_pos_1():
 
     # Assert
     assert ass_val == 4
+
+def test_pop_right_pos_1():
+    # Arrange
+    dll = DoubleLinkedList()
+
+    # Act
+    for i in range(0,5):
+        dll.prepend(i)
+    ass_val = dll.pop_right()
+
+    # Assert
+    assert ass_val == 0
