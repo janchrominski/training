@@ -41,10 +41,7 @@ def test_pop_left_pos_1():
     # Act
     for i in range(0,5):
         dll.prepend(i)
-    dll.pop_left()
+    ass_val = dll.pop_left()
 
     # Assert
-    n = dll.head
-    for i in range(5, 1):
-        assert n.value == i
-        n = n.next
+    assert ass_val == 4

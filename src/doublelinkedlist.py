@@ -46,13 +46,15 @@ class DoubleLinkedList:
 
         self._length += 1
 
-    def pop_left(self) -> None:
+    def pop_left(self) -> int:
         """
         Time complexity: O(1)
         Space Complexity: O(1)
         """
+        rtr_value = self.head.value
+
         if self._length == 0:
-            return
+            raise TypeError
         elif self._length == 1:
             self.head = self.tail = None
         else:
@@ -61,3 +63,4 @@ class DoubleLinkedList:
             self.head = next_node
 
         self._length -= 1
+        return rtr_value
