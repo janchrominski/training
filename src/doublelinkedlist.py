@@ -33,8 +33,8 @@ class DoubleLinkedList:
 
     def prepend(self, new_val: int) -> None:
         """
-        Time complexity:
-        Space Complexity:
+        Time complexity: O(1)
+        Space Complexity: O(1)
         """
         new_node = Node(value=new_val)
         if self._length == 0:
@@ -45,3 +45,18 @@ class DoubleLinkedList:
             self.head = new_node
 
         self._length += 1
+
+    def pop_left(self) -> None:
+        """
+        Time complexity: O(1)
+        Space Complexity: O(1)
+        """
+        if self._length == 0:
+            return
+        elif self._length == 1:
+            self.head = self.tail = None
+        else:
+            next_node = self.head.next
+            self.head = next_node.previous = None
+
+        self._length -= 1

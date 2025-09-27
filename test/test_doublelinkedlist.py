@@ -33,3 +33,18 @@ def test_prepend_pos_1():
     for i in range(5,0):
         assert n.value == i
         n = n.next
+
+def test_pop_left_pos_1():
+    # Arrange
+    dll = DoubleLinkedList()
+
+    # Act
+    for i in range(0,5):
+        dll.prepend(i)
+    dll.pop_left()
+
+    # Assert
+    n = dll.head
+    for i in range(5, 1):
+        assert n.value == i
+        n = n.next
