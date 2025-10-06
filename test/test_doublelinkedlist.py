@@ -57,3 +57,18 @@ def test_pop_right_pos_1():
 
     # Assert
     assert ass_val == 0
+
+def test_remove_pos_1():
+    # Arrange
+    dll = DoubleLinkedList()
+    for i in range(0,5):
+        dll.append(i)
+
+    # Act
+    dll.remove(3)
+
+    # Assert
+    n = dll.head
+    for i in [0,1,2,4]:
+        assert n.value == i
+        n = n.next

@@ -83,3 +83,26 @@ class DoubleLinkedList:
 
         self._length -= 1
         return rtr_val
+
+    def remove(self, value: int) -> None:
+        """
+        Time complexity: O(n)
+        Space Complexity: O(1)
+        """
+        if self._length == 0:
+            raise TypeError
+
+        # Iterate through the structure
+        cur_node: Node = self.head
+        while cur_node.value != value:
+            if cur_node.next is None:
+                return BaseException
+            else:
+                cur_node = cur_node.next
+
+        # remove node
+        if cur_node.next is not None: cur_node.next.previous = cur_node.previous
+        if cur_node.previous is not None: cur_node.previous.next = cur_node.next
+
+        # update length
+        self._length -=1
