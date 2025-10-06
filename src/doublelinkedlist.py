@@ -101,8 +101,18 @@ class DoubleLinkedList:
                 cur_node = cur_node.next
 
         # remove node
-        if cur_node.next is not None: cur_node.next.previous = cur_node.previous
-        if cur_node.previous is not None: cur_node.previous.next = cur_node.next
+        if cur_node.next is not None and cur_node.previous is not None:
+            # Middle node
+            cur_node.next.previous = cur_node.previous
+            cur_node.previous.next = cur_node.next
+        elif cur_node.next is not None and cur_node.previous is None:
+            # Head
+            self.head = cur_node.next
+            cur_node.next.previous = None
+        else:
+            # this is the tail
+            self.tail = cur_node.previous
+            cur_node.previous.next = None
 
         # update length
         self._length -=1
