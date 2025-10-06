@@ -72,3 +72,33 @@ def test_remove_pos_1():
     for i in [0,1,2,4]:
         assert n.value == i
         n = n.next
+
+def test_remove_pos_2():
+    # Arrange
+    dll = DoubleLinkedList()
+    for i in range(0,5):
+        dll.append(i)
+
+    # Act
+    dll.remove(0)
+
+    # Assert
+    n = dll.head
+    for i in [1,2,3,4]:
+        assert n.value == i
+        n = n.next
+
+def test_remove_pos_3():
+    # Arrange
+    dll = DoubleLinkedList()
+    for i in range(0,5):
+        dll.append(i)
+
+    # Act
+    dll.remove(4)
+
+    # Assert
+    n = dll.head
+    for i in [0,1,2,3]:
+        assert n.value == i
+        n = n.next

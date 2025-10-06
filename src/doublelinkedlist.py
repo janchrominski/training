@@ -107,12 +107,10 @@ class DoubleLinkedList:
             cur_node.previous.next = cur_node.next
         elif cur_node.next is not None and cur_node.previous is None:
             # Head
-            self.head = cur_node.next
-            cur_node.next.previous = None
+            return self.pop_left()
         else:
             # this is the tail
-            self.tail = cur_node.previous
-            cur_node.previous.next = None
+            return self.pop_right()
 
         # update length
         self._length -=1
