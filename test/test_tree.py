@@ -29,3 +29,15 @@ def test_tree() -> None:
 
     # Assert
     assert is_valid_bst(tree.root)
+
+def test_binary_tree() -> None:
+    # Arrange
+    tree = BinarySearchTree()
+
+    # Act
+    for i in range(1,20+1):
+        tree.insert(i)
+
+    # Assert
+    for i in range(1,20+1):
+        assert tree.contains(i)
