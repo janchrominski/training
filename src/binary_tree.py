@@ -72,7 +72,7 @@ class BinarySearchTree:
             return self._remove_node_two_children(current)
         return self._remove_node_one_child(current, parent)
 
-    def _remove_node_no_children(self, current, parent):
+    def _remove_node_no_children(self, current: Node, parent: Node):
         if current is self.root:
             self.root = None
             return self
@@ -80,6 +80,37 @@ class BinarySearchTree:
             parent.left = None
         elif parent.right == current:
             parent.right = None
+        else:
+            raise Exception()
+        return self
+
+    def _remove_node_one_child(self, current: Node, parent: Node):
+        if current is self.root:
+            self.root = None
+            return self
+        elif parent.left is current:
+            # the node is on the left of the parent
+
+            if current.left is not None and current.right is None:
+                #the one child is on the left
+                parent.left = current.left
+            elif current.left is None and current.right is not None:
+                #the one child is on the right
+                parent.left = current.right
+            else:
+                raise Exception()
+
+        elif parent.right is current:
+            # the node is on the right of the parent
+
+            if current.left is not None and current.right is None:
+                #the one child is on the left
+                parent.right = current.left
+            elif current.left is None and current.right is not None:
+                #the one child is on the right
+                parent.right = current.right
+            else:
+                raise Exception()
         else:
             raise Exception()
         return self

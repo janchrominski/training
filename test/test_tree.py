@@ -43,6 +43,8 @@ def test_binary_tree() -> None:
         assert tree.contains(i)
 
 def test_tree_remove_1():
+    # Remove a leaf node with no children
+
     # Arrange
     tree = BinarySearchTree()
 
@@ -53,3 +55,19 @@ def test_tree_remove_1():
     # Assert
     tree.remove(value=20)
     assert not tree.contains(20)
+
+def test_tree_remove_2():
+    # Remove a leaf node with a child
+
+    # Arrange
+    tree = BinarySearchTree()
+
+    # Act
+    for i in (5,4,3):
+        tree.insert(i)
+
+    # Assert
+    tree.remove(value=4)
+    assert not tree.contains(4)
+    assert tree.root.value == 5
+    assert tree.root.left.value == 3
