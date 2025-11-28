@@ -41,3 +41,15 @@ def test_binary_tree() -> None:
     # Assert
     for i in range(1,20+1):
         assert tree.contains(i)
+
+def test_tree_remove_1():
+    # Arrange
+    tree = BinarySearchTree()
+
+    # Act
+    for i in range(1,20+1):
+        tree.insert(i)
+
+    # Assert
+    tree.remove(value=20)
+    assert not tree.contains(20)

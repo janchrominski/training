@@ -50,3 +50,36 @@ class BinarySearchTree:
             else:
                 current_node = current_node.right
         return False
+
+    def remove(self, value, start=None, parent=None):
+        current = start or self.root
+        while current and current.value != value:
+            # Save parent
+            parent = current
+            # Get relevant child
+            if value < current.value:
+                current = parent.left
+            else:
+                current = parent.right
+
+        # Process the child
+        if not current:
+            raise Exception("item not in tree")
+        # We found a node and it has no children
+        if not current.right and not current.left:
+            return self._remove_node_no_children(current,parent)
+        elif current.right and current.left:
+            return self._remove_node_two_children(current)
+        return self._remove_node_one_child(current, parent)
+
+    def _remove_node_no_children(self, current, parent):
+        if current is self.root:
+            self.root = None
+            return self
+        if parent.left == current:
+            parent.left = None
+        elif parent.right == current:
+            parent.right = None
+        else:
+            raise Exception()
+        return self
