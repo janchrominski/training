@@ -12,6 +12,7 @@ class BinarySearchTree:
         """
         O complexity space: O(1)
         O complexity time: O(log n)
+        todo revisit insert... how do I exactly have a node with 2 children?
         """
         new_node = Node(value)
 
@@ -86,31 +87,30 @@ class BinarySearchTree:
 
     def _remove_node_one_child(self, current: Node, parent: Node):
         if current is self.root:
-            self.root = None
+            self.root = current.right if current.right else current.left
             return self
+
         elif parent.left is current:
             # the node is on the left of the parent
-
-            if current.left is not None and current.right is None:
-                #the one child is on the left
-                parent.left = current.left
-            elif current.left is None and current.right is not None:
-                #the one child is on the right
-                parent.left = current.right
-            else:
-                raise Exception()
+            parent.left = current.right if current.right else current.left
 
         elif parent.right is current:
             # the node is on the right of the parent
+            parent.right = current.right if current.right else current.left
 
-            if current.left is not None and current.right is None:
-                #the one child is on the left
-                parent.right = current.left
-            elif current.left is None and current.right is not None:
-                #the one child is on the right
-                parent.right = current.right
-            else:
-                raise Exception()
-        else:
-            raise Exception()
         return self
+
+    def _remove_node_two_children(self, current: Node):
+        successor = self._get_successor(current)
+        current.value = successor.value
+        return self.remove(successor.value, start=current.right, parent=current)
+
+    @staticmethod
+    def _get_successor(current: Node):
+        # Step right...
+        successor = current.right
+        # Step all the way to the left! While there is a successor and there is a left child,
+        # move to that left child :) :D :P xD
+        while successor and successor.left:
+            successor = successor.left
+        return successor
