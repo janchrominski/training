@@ -1,5 +1,7 @@
 from src.binary_tree import BinarySearchTree, Node
+from collections import deque
 import random
+
 
 def is_valid_bst(node: Node,
                  min_val: float=float("-inf"),
@@ -73,15 +75,14 @@ def test_tree_remove_2():
     assert tree.root.left.value == 3
 
 def test_tree_remove_3():
-    # Remove a leaf node with two children!!! todo make a second one
+    # Remove a leaf node with two children!!!
 
     # Arrange
     tree = BinarySearchTree()
-
-    # Act
     for i in (10, 5, 15, 12, 18):
         tree.insert(i)
 
+    # Act
     tree.remove(10)
 
     # Assert
@@ -90,3 +91,20 @@ def test_tree_remove_3():
     assert tree.root.right.value == 15
     assert tree.root.right.right.value == 18
     assert tree.root.right.left is None
+
+def test_df_traversal():
+    # Arrange
+    # Initiate and fill the tree
+    tree = BinarySearchTree()
+    tree_tuple = (10, 5, 15, 12, 18)
+    for i in tree_tuple:
+        tree.insert(i)
+
+    # Act
+    result_list: list[int] = tree.df_traversal()
+
+    # Assert
+    assert len(result_list) == len(tree_tuple)
+
+    for i in range(len(tree_tuple)):
+        assert result_list[i] == tree_tuple[i]

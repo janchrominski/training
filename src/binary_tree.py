@@ -1,3 +1,5 @@
+from collections import deque
+
 class Node:
     def __init__(self, value: int):
         self.value: int = value
@@ -114,3 +116,25 @@ class BinarySearchTree:
         while successor and successor.left:
             successor = successor.left
         return successor
+
+    def df_traversal(self) -> deque[int]:
+        """
+        Time complexity:
+        Space complexity:
+        """
+        if self.root is None: raise Exception()
+
+        queue: deque[Node] = deque()
+        visited: list[int] = []
+
+        queue.append(self.root)
+        while queue:
+            selected = queue.popleft()
+            if selected.left:
+                queue.append(selected.left)
+            if selected.right:
+                queue.append(selected.right)
+
+            visited.append(selected.value)
+
+        return visited
