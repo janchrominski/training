@@ -117,7 +117,7 @@ class BinarySearchTree:
             successor = successor.left
         return successor
 
-    def df_traversal(self) -> deque[int]:
+    def bf_traversal(self) -> list[int]:
         """
         Time complexity:
         Space complexity:
@@ -136,5 +136,21 @@ class BinarySearchTree:
                 queue.append(selected.right)
 
             visited.append(selected.value)
+
+        return visited
+
+    def df_in_ord_traversal(self) -> list[int]:
+        if self.root is None: raise Exception()
+
+        stack: list[Node] = [self.root]
+        visited: list[int] = []
+
+        while stack:
+            visited_node = stack.pop()
+            visited.append(visited_node.value)
+            if visited_node.left:
+                stack.append(visited_node.left)
+            if visited_node.right:
+                stack.append(visited_node.right)
 
         return visited

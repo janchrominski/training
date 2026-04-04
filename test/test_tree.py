@@ -92,7 +92,7 @@ def test_tree_remove_3():
     assert tree.root.right.right.value == 18
     assert tree.root.right.left is None
 
-def test_df_traversal():
+def test_bf_traversal():
     # Arrange
     # Initiate and fill the tree
     tree = BinarySearchTree()
@@ -101,10 +101,30 @@ def test_df_traversal():
         tree.insert(i)
 
     # Act
-    result_list: list[int] = tree.df_traversal()
+    result_list: list[int] = tree.bf_traversal()
 
     # Assert
     assert len(result_list) == len(tree_tuple)
 
     for i in range(len(tree_tuple)):
         assert result_list[i] == tree_tuple[i]
+
+def test_df_in_ord_traversal():
+    # Arrange
+    # Initiate and fill the tree
+    tree: BinarySearchTree = BinarySearchTree()
+    tree_tuple: tuple[int] = (10, 5, 15, 12, 18)
+    for i in tree_tuple:
+        tree.insert(i)
+
+    # Act
+    a: list[int] = tree.df_in_ord_traversal()
+    b: list[int] = tree.bf_traversal()
+
+    # Assert
+    assert_tree_tuple: tuple[int] = (10,15,18,12,5)
+    assert len(a) == len(b) == len(tree_tuple)
+
+
+    for i in range(len(assert_tree_tuple)):
+        assert assert_tree_tuple[i] in a and assert_tree_tuple[i] in b
