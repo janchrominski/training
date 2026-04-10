@@ -147,3 +147,18 @@ def test_df_pre_ord_iterative():
     for i in range(len(assert_tree_tuple)):
         assert assert_tree_tuple[i] in a and assert_tree_tuple[i] in b
 
+def test_df_in_ord_iterative():
+    # Arrange
+    # Initiate and fill the tree
+    tree: BinarySearchTree = BinarySearchTree()
+    tree_tuple: tuple[int] = (10, 5, 15, 12, 18)
+    for i in tree_tuple:
+        tree.insert(i)
+
+    # Act
+    a: list[int] = tree.df_in_ord_traversal()
+    b: list[int] = [5,10,12,15,18]
+
+    # Assert
+    for i in range(len(tree_tuple)):
+        assert a[i].value == b[i]

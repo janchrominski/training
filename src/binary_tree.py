@@ -169,3 +169,24 @@ class BinarySearchTree:
 
         _traverse(self.root)
         return visited
+
+    def df_in_ord_traversal(self) -> list[int]:
+        if self.root is None: raise Exception()
+
+        current_node: Node = self.root
+        stack: list[Node] = []
+        visited: list[Node] = []
+
+        while stack or current_node:
+            if current_node:
+                # go left
+                stack.append(current_node)
+                current_node = current_node.left
+            else:
+                visited_node = stack.pop()
+                visited.append(visited_node)
+                if not visited_node.right:
+                    continue
+                current_node = visited_node.right
+
+        return visited
