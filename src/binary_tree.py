@@ -139,7 +139,7 @@ class BinarySearchTree:
 
         return visited
 
-    def df_in_ord_traversal(self) -> list[int]:
+    def df_pre_ord_traversal(self) -> list[int]:
         if self.root is None: raise Exception()
 
         stack: list[Node] = [self.root]
@@ -152,5 +152,28 @@ class BinarySearchTree:
                 stack.append(visited_node.left)
             if visited_node.right:
                 stack.append(visited_node.right)
+
+        return visited
+
+    def df_pre_ord_iterative(
+            self,
+            stack: list[Node] = [],
+            visited: list[int] = []
+    ) -> list[int]:
+        if self.root is None:
+            raise Exception()
+        elif not stack:
+            stack.append(self.root)
+
+        # recursion time
+        new_node = stack.pop()
+        visited.append(new_node.value)
+
+        if new_node.left:
+            stack.append(new_node.left)
+            self.df_pre_ord_iterative(stack=stack, visited=visited)
+        if new_node.right:
+            stack.append(new_node.right)
+            self.df_pre_ord_iterative(stack=stack, visited=visited)
 
         return visited

@@ -1,5 +1,4 @@
 from src.binary_tree import BinarySearchTree, Node
-from collections import deque
 import random
 
 
@@ -109,7 +108,7 @@ def test_bf_traversal():
     for i in range(len(tree_tuple)):
         assert result_list[i] == tree_tuple[i]
 
-def test_df_in_ord_traversal():
+def test_df_pre_ord_traversal():
     # Arrange
     # Initiate and fill the tree
     tree: BinarySearchTree = BinarySearchTree()
@@ -118,7 +117,7 @@ def test_df_in_ord_traversal():
         tree.insert(i)
 
     # Act
-    a: list[int] = tree.df_in_ord_traversal()
+    a: list[int] = tree.df_pre_ord_traversal()
     b: list[int] = tree.bf_traversal()
 
     # Assert
@@ -128,3 +127,23 @@ def test_df_in_ord_traversal():
 
     for i in range(len(assert_tree_tuple)):
         assert assert_tree_tuple[i] in a and assert_tree_tuple[i] in b
+
+def test_df_pre_ord_iterative():
+    # Arrange
+    # Initiate and fill the tree
+    tree: BinarySearchTree = BinarySearchTree()
+    tree_tuple: tuple[int] = (10, 5, 15, 12, 18)
+    for i in tree_tuple:
+        tree.insert(i)
+
+    # Act
+    a: list[int] = tree.df_pre_ord_iterative()
+    b: list[int] = tree.bf_traversal()
+
+    # Assert
+    assert_tree_tuple: tuple[int] = (10, 15, 18, 12, 5)
+    assert len(a) == len(b) == len(tree_tuple)
+
+    for i in range(len(assert_tree_tuple)):
+        assert assert_tree_tuple[i] in a and assert_tree_tuple[i] in b
+
