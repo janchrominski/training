@@ -155,25 +155,17 @@ class BinarySearchTree:
 
         return visited
 
-    def df_pre_ord_iterative(
-            self,
-            stack: list[Node] = [],
-            visited: list[int] = []
-    ) -> list[int]:
+    def df_pre_ord_iterative(self) -> list[int]:
         if self.root is None:
             raise Exception()
-        elif not stack:
-            stack.append(self.root)
+        visited = []
 
-        # recursion time
-        new_node = stack.pop()
-        visited.append(new_node.value)
+        def _traverse(node: Node):
+            if node:
+                visited.append(node.value)
+                _traverse(node.left)
+                _traverse(node.right)
+            return
 
-        if new_node.left:
-            stack.append(new_node.left)
-            self.df_pre_ord_iterative(stack=stack, visited=visited)
-        if new_node.right:
-            stack.append(new_node.right)
-            self.df_pre_ord_iterative(stack=stack, visited=visited)
-
+        _traverse(self.root)
         return visited
