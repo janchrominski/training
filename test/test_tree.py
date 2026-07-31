@@ -162,3 +162,35 @@ def test_df_in_ord_iterative():
     # Assert
     for i in range(len(tree_tuple)):
         assert a[i].value == b[i]
+
+def test_df_in_ord_recursion():
+    # Arrange
+    # Initiate and fill the tree
+    tree: BinarySearchTree = BinarySearchTree()
+    tree_tuple: tuple[int] = (10, 5, 15, 12, 18)
+    for i in tree_tuple:
+        tree.insert(i)
+
+    # Act
+    a: list[int] = tree.df_in_ord_recursion()
+    b: list[int] = [5,10,12,15,18]
+
+    # Assert
+    for i in range(len(tree_tuple)):
+        assert a[i] == b[i]
+
+def test_df_post_order_iterative():
+    # Arrange
+    # Initiate and fill the tree
+    tree: BinarySearchTree = BinarySearchTree()
+    tree_tuple: tuple[int] = (10, 5, 15, 12, 18)
+    for i in tree_tuple:
+        tree.insert(i)
+
+    # Act
+    a: list[int] = tree.df_post_ord_traversal()
+    b: list[int] = [5, 12, 18, 15, 10]
+
+    # Assert
+    for i in range(len(tree_tuple)):
+        assert a[i] == b[i]

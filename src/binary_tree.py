@@ -190,3 +190,40 @@ class BinarySearchTree:
                 current_node = visited_node.right
 
         return visited
+
+    def df_in_ord_recursion(self) -> list[int]:
+        if self.root is None:
+            raise Exception()
+        visited = []
+
+        def _traverse(node: Node):
+            if node:
+                _traverse(node.left)
+                visited.append(node.value)
+                _traverse(node.right)
+            return
+
+        _traverse(self.root)
+        return visited
+
+    def df_post_ord_traversal(self) -> list[int]:
+        if self.root is None: raise Exception()
+
+        current = previous = self.root
+        stack = []
+        visited = []
+        while current:
+            while current.left:
+                # Move to the lower left node
+                stack.append(current)
+                current = current.left
+            while not current.right or current.right == previous:
+                # Move to the right node
+                visited.append(current.value)
+                previous = current
+                if not stack:
+                    return visited
+                # Go back to parent
+                current = stack.pop()
+            stack.append(current)
+            current = current.right
